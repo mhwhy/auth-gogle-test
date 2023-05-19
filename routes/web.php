@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +28,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+Route::get('auth/google', [GoogleController::class, 'signInwithGoogle']);
+// Route::get('auth/google'[$user = Socialite::driver('google')->redirect()]);
+Route::get('callback/google', [GoogleController::class, 'callbackToGoogle']);
